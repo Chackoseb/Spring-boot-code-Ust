@@ -1,0 +1,31 @@
+package com.ust.digital_wallet.entity;
+
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class User {
+
+	@Id
+	long phoneNo;
+	String name;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	List<Documents> documents;
+	
+//	public HashMap<Integer, Documents> getDocuments() {
+//		// TODO Auto-generated method stub
+//		return documents;
+//	}
+	
+	
+}

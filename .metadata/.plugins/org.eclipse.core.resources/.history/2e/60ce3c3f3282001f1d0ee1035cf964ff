@@ -1,0 +1,42 @@
+package com.ust.rest.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ust.rest.model.Product;
+
+@RestController
+@RequestMapping("product/api1.0") //root of resource/ controller
+public class ProductController {
+
+	ArrayList<Product> productsList = new ArrayList<>();
+
+	{
+		productsList.add(new Product(101, "Nike", "Feather Walk", 10, 15000));
+		productsList.add(new Product(102, "Addidas", "Comfort Walk", 20, 25000));
+		productsList.add(new Product(103, "Puma", "Firm Grip", 14, 11000));
+	}
+	
+	@GetMapping(value="/productsinfo")
+	public List<Product> displayProducts(){
+		return productsList;
+	}
+	
+	
+	
+	@GetMapping("/status")
+	public String status() {
+		return "UP and Running...";
+		
+	}
+	
+	@GetMapping("/time")
+	public String time() {
+		return new java.util.Date().getTime()+"";
+	}
+
+}

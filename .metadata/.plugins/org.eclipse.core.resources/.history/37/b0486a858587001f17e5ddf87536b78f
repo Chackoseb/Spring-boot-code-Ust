@@ -1,0 +1,5 @@
+package com.ust.security.controller;
+
+public class RegistrationController {
+
+}

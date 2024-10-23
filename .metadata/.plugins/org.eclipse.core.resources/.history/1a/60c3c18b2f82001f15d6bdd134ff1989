@@ -1,0 +1,22 @@
+package com.ust.rest.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("product/api1.0") //root of resource/ controller
+public class ProductController {
+
+	@GetMapping("/status")
+	public String status() {
+		return "UP and Running...";
+		
+	}
+	
+	@GetMapping("/time")
+	public String time() {
+		return new java.util.Date().getTime()+"";
+	}
+
+}

@@ -1,0 +1,68 @@
+package com.ust.digital_wallet.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+
+import javax.print.Doc;
+
+import org.springframework.aop.AfterReturningAdvice;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ust.digital_wallet.entity.Documents;
+import com.ust.digital_wallet.entity.User;
+import com.ust.digital_wallet.repository.UserRepository;
+
+
+@RestController
+@RequestMapping("/wallet")
+public class WalletController {
+	
+//	@Autowired
+//	private WalletService walletService;
+	
+	@Autowired
+	private UserRepository userRepo;
+
+	@GetMapping("/getEverything")
+	public List<User> getAllUsers(){
+		return userRepo.findAll();
+	}
+	
+	@GetMapping("/{phone}")
+	public User getUserByPhone(@PathVariable Long phone) {
+		Optional<User> userOptional = userRepo.findById(phone);
+		if(userOptional.isPresent()) {
+			return userOptional.get();
+		}
+		else
+			return null;
+		
+	}
+	
+	@GetMapping("/{phone}/{docType}")
+	public Documents getDocByUserIdByDocType(@PathVariable Long phone, @PathVariable String docType) {
+		Optional<User> userOptional = userRepo.findById(phone);
+		if(userOptional.isPresent()) {
+			HashMap<Integer, Documents> docsMap = userOptional.get().getDocuments();
+			for (Map.Entry<Integer, Documents> entry : docsMap.entrySet()) {
+		        Documents doc = entry.getValue();
+		        if (doc.getDocType().equals(docType)) {
+		            return doc;  // returning the document if docType matches
+		        }
+		    }
+		}
+	}
+	
+	
+	@PostMapping("/addUser")
+	public User addNewUser(@RequestBody User newUser) {
+		return userRepo.save(newUser);
+	}
+}

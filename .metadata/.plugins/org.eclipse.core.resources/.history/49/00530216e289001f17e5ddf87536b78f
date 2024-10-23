@@ -1,0 +1,5 @@
+package com.ust.springboot6_oauth20.controller;
+
+public class HomeController {
+
+}

@@ -1,0 +1,11 @@
+package com.ust.awslambda;
+
+public class TestLambda {
+//	public String status(int x) {
+//		return x*4 + "";
+//	}
+	
+	public String handleRequest(Data obj, Context context) {
+		return (obj.getX() + obj.getY());
+	}
+}

@@ -1,0 +1,12 @@
+spring.application.name=helloservice
+
+server.port = 0
+#8071
+
+eureka.client.registerWithEureka= true
+eureka.client.fetchRegistry= true
+eureka.client.serviceUrl.defaultZone= http://localhost:8761/eureka/
+eureka.instance.hostname= localhost
+
+#we are going to make multiple requests to try loadbalncing. so each instance is given an unique id
+eureka.instance.instance-id= "${spring.application.name}: ${instanceId:${random.value}}"

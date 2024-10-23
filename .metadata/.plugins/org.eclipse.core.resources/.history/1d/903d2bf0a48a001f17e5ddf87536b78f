@@ -1,0 +1,85 @@
+package com.ust.digital_wallet.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ust.digital_wallet.entity.Documents;
+import com.ust.digital_wallet.entity.User1;
+import com.ust.digital_wallet.repository.DocumentsRepository;
+import com.ust.digital_wallet.repository.UserRepository;
+
+@RestController
+@RequestMapping("/api/wallet")
+public class WalletController {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private DocumentsRepository documentsRepository;
+
+    @GetMapping("/users")
+    public List<User1> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @GetMapping("/users/{phoneNo}")
+    public ResponseEntity<User1> getUserByPhoneNo(@PathVariable Long phoneNo) {
+        Optional<User1> user = userRepository.findById(phoneNo);
+        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Create a new user
+    @PostMapping("/users")
+    public User1 createUser(@RequestBody User1 user) {
+        return userRepository.save(user);
+    }
+
+    // Update user
+    @PutMapping("/users/{phoneNo}")
+    public ResponseEntity<User1> updateUser(@PathVariable Long phoneNo, @RequestBody User1 userDetails) {
+        Optional<User1> user = userRepository.findById(phoneNo);
+        if (user.isPresent()) {
+            User1 existingUser = user.get();
+            existingUser.setName(userDetails.getName());
+            // Update other fields if needed
+            return ResponseEntity.ok(userRepository.save(existingUser));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    // Delete user
+    @DeleteMapping
+    ("/users/{phoneNo}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long phoneNo) {
+        if (userRepository.existsById(phoneNo)) {
+            userRepository.deleteById(phoneNo);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+//
+//    // Get documents for a user
+//    @GetMapping("/users/{phoneNo}/documents")
+//    public List<Documents> getDocumentsByUserPhoneNo(@PathVariable Long phoneNo) {
+//        return documentsRepository.findByUserPhoneNo(phoneNo); // Ensure the method exists in DocumentsRepository
+//    }
+//
+    // Create a new document for a user
+    @PostMapping("/users/{phoneNo}/documents")
+    public Documents createDocument(@PathVariable Long phoneNo, @RequestBody Documents document) {
+        document.setUser(new User1(phoneNo));
+        return documentsRepository.save(document);
+    }
+}

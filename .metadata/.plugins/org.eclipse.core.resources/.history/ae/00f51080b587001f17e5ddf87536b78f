@@ -1,0 +1,5 @@
+package com.ust.security.repository;
+
+public interface UserRepository extends JpaRepository<User,Integer> {
+    User findByUserName(String username);
+}

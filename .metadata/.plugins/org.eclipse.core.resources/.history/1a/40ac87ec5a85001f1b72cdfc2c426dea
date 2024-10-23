@@ -1,0 +1,5 @@
+package com.ust.factorialservice.controller;
+
+public class FactorialController {
+
+}

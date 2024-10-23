@@ -1,0 +1,28 @@
+package com.ust.digital_wallet.entity;
+
+import java.util.HashMap;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class User {
+
+	@Id
+	long phoneNo;
+	String name;
+	HashMap<Integer, Documents> documents = new HashMap<>();
+	
+//	public HashMap<Integer, Documents> getDocuments() {
+//		// TODO Auto-generated method stub
+//		return documents;
+//	}
+	
+	
+}

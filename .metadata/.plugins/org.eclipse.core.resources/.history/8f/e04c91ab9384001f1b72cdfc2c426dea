@@ -1,0 +1,5 @@
+package com.ust.client.controller;
+
+public class ProductController {
+
+}

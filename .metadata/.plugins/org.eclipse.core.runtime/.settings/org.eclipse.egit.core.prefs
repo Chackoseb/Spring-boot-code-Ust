@@ -1,0 +1,4 @@
+GitRepositoriesView.GitDirectories=C\:\\Users\\Administrator\\Documents\\workspace-spring-tool-suite-4-4.22.1.RELEASE\\helloservicedocker\\.git;C\:\\Users\\Administrator\\Documents\\workspace-spring-tool-suite-4-4.22.1.RELEASE\\helloservice-docker\\.git;
+GitRepositoriesView.GitDirectories.relative=helloservicedocker\\.git;helloservice-docker\\.git;
+core_autoIgnoreDerivedResources=false
+eclipse.preferences.version=1

@@ -1,0 +1,15 @@
+spring.application.name=product-api-mysql
+server.port=8075
+
+#jdbc is main protocol, mysql is subprotoco. The portnumbers are decided by these subprotocols
+#localhost => ports present, 3306 => port taken for this, test is db name
+spring.datasource.url=jdbc:mysql://ust-database2.cv6oo6i2ym6i.ap-south-1.rds.amazonaws.com
+spring.datasource.username=adminust123
+spring.datasource.password=adminust123
+spring.jpa.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+spring.jpa.hibernate.naming-strategy=org.hibernate.cfg.ImproveNamingStrategy
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+#for geting all endpoints for actuator
+management.endpoints.web.exposure.include=*

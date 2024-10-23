@@ -1,0 +1,16 @@
+package com.ust.digital_wallet.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class Documents {
+    private int docId;
+    private String docType;
+    private String credNumber;
+    private String issueDate;
+    private String expiryDate;
+}
