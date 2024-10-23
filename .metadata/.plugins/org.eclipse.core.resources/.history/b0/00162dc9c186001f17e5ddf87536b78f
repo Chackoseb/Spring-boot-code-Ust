@@ -1,5 +1,0 @@
-package com.ust.client.resources;
-
-public class FeignClient {
-
-}

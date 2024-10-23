@@ -1,5 +1,0 @@
-package com.ust.security.filter;
-
-public class MyJWTFilter {
-
-}

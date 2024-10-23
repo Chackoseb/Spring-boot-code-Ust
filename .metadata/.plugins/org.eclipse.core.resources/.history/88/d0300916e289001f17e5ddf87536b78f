@@ -1,5 +1,0 @@
-package com.ust.springboot6_oauth20.config;
-
-public class SecurityConfig {
-
-}

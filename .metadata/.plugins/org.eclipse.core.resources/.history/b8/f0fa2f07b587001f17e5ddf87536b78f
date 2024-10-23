@@ -1,5 +1,0 @@
-package com.ust.security.util;
-
-public class MyJwtUtil {
-
-}

@@ -61,15 +61,17 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
-			<item value="com.ust.aws-lambda1"/>
 			<item value="com.ust.awslambda"/>
+			<item value="com.ust.aws-lambda1"/>
 		</list>
 		<list key="name">
+			<item value="awslambda"/>
 			<item value="aws-lambda1"/>
 			<item value="aws-lamda1"/>
 			<item value="aws-lambda"/>
 		</list>
 		<list key="artifactId">
+			<item value="awslambda"/>
 			<item value="aws-lambda1"/>
 			<item value="aws-lambda"/>
 		</list>
